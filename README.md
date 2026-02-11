@@ -1,4 +1,4 @@
-# Job Application Management System – Backend
+# Job Application Management System 
 
 A production-style backend application built using **Java 21 (LTS)** and **Spring Boot 3** that allows administrators to manage job postings and job seekers to apply for jobs securely.
 
