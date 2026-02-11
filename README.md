@@ -6,7 +6,7 @@ This project follows clean architecture principles and demonstrates real-world b
 
 ---
 
-## 🚀 Key Features
+##  Key Features
 - JWT-based authentication and authorization
 - Role-based access control (ADMIN, JOB_SEEKER)
 - Secure REST APIs
@@ -18,7 +18,7 @@ This project follows clean architecture principles and demonstrates real-world b
 
 ---
 
-## 🛠 Technology Stack
+##  Technology Stack
 - Java 21 (LTS)
 - Spring Boot 3.x
 - Spring Security
@@ -30,7 +30,7 @@ This project follows clean architecture principles and demonstrates real-world b
 
 ---
 
-## 🧩 Application Modules
+##  Application Modules
 - Authentication & Authorization
 - User & Role Management
 - Job Management
@@ -39,7 +39,7 @@ This project follows clean architecture principles and demonstrates real-world b
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 job-application-management-system/
 │
 ├── controller
