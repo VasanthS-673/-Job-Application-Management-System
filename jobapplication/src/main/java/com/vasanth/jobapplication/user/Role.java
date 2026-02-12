@@ -1,4 +1,6 @@
 package com.vasanth.jobapplication.user;
 
-public class Role {
+public enum Role {
+    USER,
+    ADMIN
 }
