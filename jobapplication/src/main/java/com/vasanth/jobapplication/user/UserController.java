@@ -13,7 +13,6 @@ public class UserController {
 
     private final UserService userService;
 
-    // ADMIN ONLY
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
     public List<UserResponseDto> getAllUsers() {
@@ -28,4 +27,3 @@ public class UserController {
                 .toList();
     }
 }
-

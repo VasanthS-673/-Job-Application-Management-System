@@ -1,5 +1,9 @@
 package com.vasanth.jobapplication.user;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -27,10 +31,5 @@ public class UserService {
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
-    }
-
-    public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }

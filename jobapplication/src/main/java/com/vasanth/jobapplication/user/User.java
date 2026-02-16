@@ -1,6 +1,5 @@
 package com.vasanth.jobapplication.user;
 
-import com.jobapp.user.Role;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,6 +1,7 @@
 package com.vasanth.jobapplication.user;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
