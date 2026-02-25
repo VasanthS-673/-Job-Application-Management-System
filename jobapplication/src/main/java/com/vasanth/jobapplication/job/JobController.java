@@ -7,25 +7,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/jobs")
+@RequestMapping("/api/jobs")
 @RequiredArgsConstructor
 public class JobController {
 
     private final JobService jobService;
-
 
     @GetMapping
     public List<Job> getAllJobs() {
         return jobService.getAllActiveJobs();
     }
 
-
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public Job createJob(@RequestBody Job job) {
         return jobService.createJob(job);
     }
-
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")

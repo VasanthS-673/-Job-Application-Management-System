@@ -1,5 +1,7 @@
 package com.vasanth.jobapplication.auth;
 
+import com.vasanth.jobapplication.security.JwtService;
+import com.vasanth.jobapplication.user.Role;
 import com.vasanth.jobapplication.user.User;
 import com.vasanth.jobapplication.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,18 +14,32 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     public AuthResponse register(RegisterRequest request) {
+
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new RuntimeException("Email already registered");
+        }
 
         User user = User.builder()
                 .name(request.getName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .role(request.getRole() != null ? request.getRole() : Role.USER)
                 .build();
 
         userRepository.save(user);
 
-        return new AuthResponse("User registered successfully");
+        org.springframework.security.core.userdetails.UserDetails userDetails =
+                org.springframework.security.core.userdetails.User
+                        .withUsername(user.getEmail())
+                        .password(user.getPassword())
+                        .roles(user.getRole().name())
+                        .build();
+
+        String token = jwtService.generateToken(userDetails);
+        return new AuthResponse("Registered successfully", token);
     }
 
     public AuthResponse login(LoginRequest request) {
@@ -35,6 +51,14 @@ public class AuthService {
             throw new RuntimeException("Invalid credentials");
         }
 
-        return new AuthResponse("Login successful");
+        org.springframework.security.core.userdetails.UserDetails userDetails =
+                org.springframework.security.core.userdetails.User
+                        .withUsername(user.getEmail())
+                        .password(user.getPassword())
+                        .roles(user.getRole().name())
+                        .build();
+
+        String token = jwtService.generateToken(userDetails);
+        return new AuthResponse("Login successful", token);
     }
 }
