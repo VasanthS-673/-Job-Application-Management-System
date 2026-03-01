@@ -1,15 +1,13 @@
 package com.vasanth.jobapplication.job;
 
+import com.vasanth.jobapplication.application.JobApplication;
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.List;
 
 @Entity
 @Table(name = "jobs")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class Job {
 
     @Id
@@ -30,4 +28,7 @@ public class Job {
 
     @Column(nullable = false)
     private boolean active;
+
+    @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<JobApplication> applications;
 }
